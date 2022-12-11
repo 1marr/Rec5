@@ -1,0 +1,34 @@
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.regex.Pattern;
+
+class Recitation5Test extends OutputTest{
+    @Test
+    @DisplayName("[1] 1st test of main")
+    void test_main_1() {
+        setTestInput("12\n14");
+        Recitation5.main(new String[]{});
+        String expected = "Circles intersect!";
+        String actual = getTestOutput();
+        String message = "Test Failed!\nExpecting:\n"+expected+"\nActual:\n"+actual;
+        assertTrue(Pattern.compile(expected.replaceAll("\\s",""))
+                        .matcher(actual.replaceAll("\\s","")).find(),
+                message);
+
+    }
+
+    @Test
+    @DisplayName("[1] 2nd test of main")
+    void test_main_2() {
+        setTestInput("200\n300");
+        Recitation5.main(new String[]{});
+        String expected = "Circles do not intersect!";
+        String actual = getTestOutput();
+        String message = "Test Failed!\nExpecting:\n"+expected+"\nActual:\n"+actual;
+        assertTrue(Pattern.compile(expected.replaceAll("\\s",""))
+                        .matcher(actual.replaceAll("\\s","")).find(),
+                message);
+
+    }
+}
