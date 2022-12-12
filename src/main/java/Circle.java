@@ -5,8 +5,7 @@
  * @author (You & Me)
  * @version (2019-10-15)
  */
-public class Circle
-{
+public class Circle {
     //instance variables
     private Point location;
     private double radius;
@@ -15,8 +14,7 @@ public class Circle
      * Default constructor that initializes an instance of Circle
      * to (0,0) with a radius of 1.0.
      */
-    public Circle()
-    {
+    public Circle() {
         location = new Point();
         radius = 1.0;
     }
@@ -27,8 +25,7 @@ public class Circle
      *
      * @param radius the radius of this circle.
      */
-    public Circle(double radius)
-    {
+    public Circle(double radius) {
         location = new Point();
         this.radius = radius;
     }
@@ -38,21 +35,22 @@ public class Circle
      * with a radius given by the parameter radius.
      *
      * @param location the location of the center of this circle
-     * @param radius the radius of this circle.
+     * @param radius   the radius of this circle.
      */
-    public Circle(Point location, double radius)
-    {
-        // TODO: add your code here.
+    public Circle(Point location, double radius) {
+        this.location = new Point(location);
+        this.radius = radius;
+        //(location.getX(), location.getY());
     }
 
     //accessors
+
     /**
      * Returns the radius of this circle.
      *
      * @return The radius of this circle.
      */
-    public double getRadius()
-    {
+    public double getRadius() {
         return radius;
     }
 
@@ -61,19 +59,19 @@ public class Circle
      *
      * @return The location of this circle.
      */
-    public Point getLocation()
-    {
-        // TODO: add your code here.
+    public Point getLocation() {
+        return new Point(location);
+        //(location.getX(), location.getY());
     }
 
     // mutator methods
+
     /**
      * Sets the radius of this circle.
      *
      * @param radius The new radius of this circle.
      */
-    public void setRadius(double radius)
-    {
+    public void setRadius(double radius) {
         this.radius = radius;
     }
 
@@ -82,21 +80,25 @@ public class Circle
      *
      * @param location The new location this circle.
      */
-    public void setLocation(Point location)
-    {
-        // TODO: add your code here.
+    public void setLocation(Point location) {
+        this.location.setX(location.getX());
+        this.location.setY(location.getY());
     }
 
     // other methods
+
     /**
      * Returns true if the point is in the circle; otherwise false. A point
      * falling on the circle is considered inside the circle.
      *
      * @return true if the point is in the circle; otherwise false
      */
-    public boolean contains(Point p)
-    {
-        // TODO: add your code here.
+    public boolean contains(Point p) {
+        double distance = location.distanceTo(p);
+        if (distance <= radius)
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -104,19 +106,17 @@ public class Circle
      * otherwise false.
      *
      * @param aCircle a circle.
+     * @return
      */
-    public boolean intersects(Circle aCircle)
-    {
-        // TODO: add your code here.
-    }
 
-    /**
-     * Returns a string representation of this circle.
-     *
-     * @return a string representation of this circle.
-     */
-    public String toString()
-    {
-        return "Circle/loc="+location+",radius="+radius;
+    public boolean intersects(Circle aCircle) {
+        return location.distanceTo(aCircle.location) <= radius + aCircle.radius;
+
+        /**
+         * Returns a string representation of this circle.
+         *
+         * @return a string representation of this circle.
+         */
+
     }
 }
